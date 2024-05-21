@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import '../styles/Armory.css'
+import '../styles/Shop.css'
 import {Container} from '@mui/material'
 import {useAuth, useItems} from '../store'
 import { getAllItems, createNewItem, getAllCarItems } from '../../lib/appwrite'
 import ItemCard from '../components/ItemCard'
 import LoadingAnimation from '../components/LoadingAnimation'
 
-function Armory() {
+function Shop() {
 
   /*let [items, setItems] = useState([])*/
 
@@ -32,4 +32,4 @@ function Armory() {
   )
 }
 
-export default Armory
+export default Shop

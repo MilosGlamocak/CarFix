@@ -1,7 +1,7 @@
 import {Routes, Route, BrowserRouter} from 'react-router-dom';
 import { checkForUser, createUser, signIn, signOut } from '../../lib/appwrite'
 import { useAuth } from '../store'
-import Armory from '../pages/Armory'
+import Shop from '../pages/Shop'
 import Profile from '../pages/Profile'
 import { useEffect, useState } from 'react';
 import SignUp from '../(auth)/SignUp';
@@ -37,7 +37,7 @@ function CustomRoutes() {
           </>  /*checks if user is logged in, if not, only signup and signin is available */ 
           ) : (
           <Route path='/' element={<RouteContainer/>}>
-            <Route path='/' index element={<Armory />}/>
+            <Route path='/' index element={<Shop />}/>
             <Route path='profile' element={<Profile/>}/>
             <Route path='itemCreation' element={<ItemCreation/>}/>
             <Route path='cart' element={<Cart/>}/>

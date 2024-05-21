@@ -14,7 +14,6 @@ function Cart() {
     const cartItems = useItems((state) => state.cartItems)
     let totalCost = 0;
 
-    console.log(cartItems)
 
 
   return (
