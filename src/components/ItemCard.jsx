@@ -38,10 +38,10 @@ function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCo
 
   const handleUpdateItem = (e) => {
     console.log(inputValue, itemId);
-    updateCarItem(
+    /*updateCarItem(
       itemId,
       
-    )
+    )*/
   }
 
   const handleCancelUpdate = () => {
