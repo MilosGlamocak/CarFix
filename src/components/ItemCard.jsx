@@ -37,7 +37,19 @@ function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCo
   }
 
   const handleUpdateItem = (e) => {
-    console.log(inputValue, itemId)
+    console.log(inputValue, itemId);
+    updateCarItem(
+      itemId,
+      
+    )
+  }
+
+  const handleCancelUpdate = () => {
+    setInputValue({
+      inputProductCode: productCode,
+      inputPrice: price,
+      inputQuantity: quantity
+    })
   }
 
   const itemInfo = [
@@ -67,7 +79,7 @@ const {label} = useAuth((state) => state)
                 <Container className='cardInfoCont'><p className='cardInfo'>Added by: </p><p className='cardInfoBold'>{publisher}</p></Container>
                 <Container className='adminButtonCont'>
                         <CustomButton text='Update' className={`adminItemButton `} onClick={handleUpdateItem}/>
-                        <CustomButton text='Cancel' className={`adminItemButton cancel `}/>
+                        <CustomButton text='Cancel' className={`adminItemButton cancel `} onClick={handleCancelUpdate}/>
                 </Container>  
             </Container>
         </Container> 

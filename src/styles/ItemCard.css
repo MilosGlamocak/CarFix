@@ -65,6 +65,8 @@
 
 .cardInfoBold {
     font-weight: 500;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .cardName {
@@ -78,6 +80,7 @@
     font-size: 0.9rem !important;
     border-radius: 5px !important;
     border: none !important;
+    margin: 0 !important;
 }
 
 .adminItemButton {
