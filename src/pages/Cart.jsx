@@ -19,7 +19,7 @@ function Cart() {
   return (
     <Container className='cartCont'>
         <Container className='CartItemsCont'>
-        {cartItems.length > 0 ? cartItems.map((item) => {
+        {cartItems.length > 0 ? cartItems.reverse().map((item) => {
             totalCost += item.price
             return <CartItemCard imageUrl={item.imageUrl} name={item.name} price={item.price} key={item.itemId} itemId={item.itemId}/>
         }) : (<h3>No items in cart</h3>)}
