@@ -6,7 +6,7 @@ import { useAuth, useItems } from '../store'
 import { deleteItem, getAllItems, getAllCarItems, deleteCarItem } from '../../lib/appwrite'
 import LoadingAnimation from './LoadingAnimation'
 
-function ItemCard({name, price, quantity, imageUrl, itemId, publisher}) {
+function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCode}) {
 
   const { cartItems, addCartItem, clearCartItems } = useItems();
 
@@ -20,7 +20,7 @@ function ItemCard({name, price, quantity, imageUrl, itemId, publisher}) {
   }
 
   const handleAddItem = () => {
-    const newItem = { name, price, imageUrl, itemId, publisher};
+    const newItem = { name, price, imageUrl, itemId, publisher, productCode};
     addCartItem(newItem);
 };
 
@@ -32,6 +32,7 @@ const {label} = useAuth((state) => state)
             <img src={imageUrl} className='itemImg'/>
             <Container className='cardTextLeft'>
                 <h2 className='cardName'>{name}</h2>
+                <Container className='cardInfoCont'><p className='cardInfo'>Product Code:</p><p className='cardInfoBold'>{productCode}</p></Container>
                 <Container className='cardInfoCont'><p className='cardInfo'>Price per Unit:</p><p className='cardInfoBold'>${price}</p></Container>
                 <Container className='cardInfoCont'><p className='cardInfo'>In Stock: </p><p className='cardInfoBold'>{quantity}</p></Container>
                 <Container className='cardInfoCont'><p className='cardInfo'>Added by: </p><p className='cardInfoBold'>{publisher}</p></Container>  

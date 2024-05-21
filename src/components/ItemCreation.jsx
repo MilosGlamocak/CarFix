@@ -25,35 +25,15 @@ function ItemCreation() {
         name: '',
         imageUrl: '',
         price: '',
-        //chamber: '',
         quantity: '',
-        category: 'Filters'
+        category: 'Filters',
+        productCode: ''
       })
 
     const handleUpdateItemCred = (e) => {
         const { id, value } = e.target;
         setItemCred({...itemCred, [id]: value}); 
     }
-
-    /*const handleCreateNewItem = async () => {
-      setLoading(true)
-        createNewItem(
-          itemCred.name,
-          itemCred.image,
-          parseFloat(itemCred.price),
-          itemCred.chamber,
-          parseInt(itemCred.quantity),
-          userId,
-          itemCred.category
-        ).then(() => setItemCred({
-          name: '',
-        image: '',
-        price: '',
-        chamber: '',
-        quantity: '',
-        category: 'Rifles'
-        })).catch((error) => console.error(error)).finally(() => setLoading(false))
-      }*/
 
       const handleCreateNewCarItem = async () => {
         setLoading(true)
@@ -63,7 +43,8 @@ function ItemCreation() {
             parseFloat(itemCred.price),
             parseInt(itemCred.quantity),
             userId,
-            itemCred.category
+            itemCred.category,
+            itemCred.productCode
           ).then(() => setItemCred({
             name: '',
           imageUrl: '',
@@ -80,13 +61,13 @@ function ItemCreation() {
 
       const inputFields = [
         {type: 'text', id: 'name', placeholder: 'Name', value: itemCred.name},
+        {type: 'text', id: 'productCode', placeholder: 'Product Code', value: itemCred.productCode},
         {type: 'url', id: 'imageUrl', placeholder: 'Image Url', value: itemCred.imageUrl},
         {type: 'number', id: 'price', placeholder: 'Price', value: itemCred.price},
-        /*{type: 'text', id: 'chamber', placeholder: 'Chamber', value: itemCred.chamber},*/
         {type: 'number', id: 'quantity', placeholder: 'Quantity', value: itemCred.quantity},
       ]
 
-      const categories = ['Filters', 'Brakes', 'Livery', 'Electronics', 'Wheels', 'Suspension'];
+      const categories = ['Filters', 'Belts', 'Oil', 'Brakes', 'Livery', 'Electronics', 'Wheels', 'Suspension'];
 
 
   return (

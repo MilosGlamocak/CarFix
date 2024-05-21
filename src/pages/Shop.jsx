@@ -23,7 +23,7 @@ function Shop() {
     <Container className='armoryCont'>
       <Container className='itemsCont'>
         { items.length > 0 ? items.map((item) => {
-          return <ItemCard name={item.name} chamber={item.chamber} imageUrl={item.imageUrl} price={item.price} quantity={item.quantity} key={item.name} itemId={item.$id} publisher={item.users.username}/>
+          return <ItemCard name={item.name} chamber={item.chamber} imageUrl={item.imageUrl} price={item.price} quantity={item.quantity} key={item.name} itemId={item.$id} publisher={item.users.username} productCode={item.productCode}/>
         })  : (<LoadingAnimation />)}
         
       </Container>

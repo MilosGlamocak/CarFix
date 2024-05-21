@@ -21,7 +21,7 @@ function Cart() {
         <Container className='CartItemsCont'>
         {cartItems.length > 0 ? cartItems.map((item) => {
             totalCost += item.price
-            return <CartItemCard imageUrl={item.image} name={item.name} price={item.price} key={item.itemId} itemId={item.itemId}/>
+            return <CartItemCard imageUrl={item.imageUrl} name={item.name} price={item.price} key={item.itemId} itemId={item.itemId}/>
         }) : (<h3>No items in cart</h3>)}
         <p>Total cost: ${totalCost}</p>
         <CustomButton text='Proceed to Checkout' border='1px solid #365F22' backgroundColor='#365F22' height='3rem' onClick={handleAddItem}/>
