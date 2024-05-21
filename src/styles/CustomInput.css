@@ -1,0 +1,11 @@
+.customInput {
+    background-color: #141414;
+    border: 1px solid #343434;
+    height: 2.5rem;
+    width: 25rem;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    color: white;
+    text-align: center;
+}
+

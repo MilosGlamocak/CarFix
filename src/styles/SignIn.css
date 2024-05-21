@@ -1,0 +1,59 @@
+.signInCont {
+    max-width: 100% !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: black;
+    gap: 2rem;
+}
+
+.signInHeader {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 0 2rem 0;
+    gap: 0.5rem;
+}
+
+.headerBig, .headerSmall {
+    margin: 0 !important;
+    color: white;
+}
+
+.headerSmall {
+    color: rgba(255,255,255, 0.5);
+}
+
+.headerBig {
+    font-size: 2.5rem;
+}
+
+.inputCont {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.signUpLinkCont {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.signUpQuestion {
+    color: rgba(255,255,255,0.5);
+}
+
+.signUpLink {
+    color: white;
+}
+
+.signUpLink:hover {
+    color: rgba(255,255,255, 0.6);
+}

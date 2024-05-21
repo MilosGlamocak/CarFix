@@ -1,0 +1,18 @@
+.customButton {
+    background-color: #141414;
+    border: 1px solid #343434;
+    border-radius: 10px;
+    height: 2.5rem;
+    width: 8rem;
+    color: white;
+    font-weight: 400;
+    font-size: 1.0rem;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: 0 !important;
+}
+
+.customButton:hover {
+    opacity: 0.8;
+}

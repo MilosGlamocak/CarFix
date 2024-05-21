@@ -1,0 +1,17 @@
+.loadingAnimation {
+
+    color: white !important;
+}
+
+.loadingAnimationCont{
+    max-width: 50% !important;
+    height: 50vh;
+    background-color: black;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
