@@ -70,3 +70,10 @@
 .cardName {
     margin: 1.5rem 0 0.5rem 0;
 }
+
+.adminItemInput {
+    width: auto !important;
+    max-width: 5rem !important;
+    height: 1rem !important;
+    font-size: 0.9rem !important;
+}
