@@ -4,12 +4,18 @@ import { CircularProgress, Container } from '@mui/material'
 import CustomButton from './CustomButton'
 import CustomInput from './CustomInput'
 import { useAuth, useItems } from '../store'
-import { deleteItem, getAllItems, getAllCarItems, deleteCarItem } from '../../lib/appwrite'
+import { deleteItem, getAllItems, getAllCarItems, deleteCarItem, updateCarItem } from '../../lib/appwrite'
 import LoadingAnimation from './LoadingAnimation'
 
 function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCode}) {
 
   const { cartItems, addCartItem, clearCartItems } = useItems();
+
+  let [inputValue, setInputValue] = useState({
+    inputProductCode: productCode,
+    inputPrice: price,
+    inputQuantity: quantity
+  })
 
   const [loading, setLoading] = useState(false)
 
@@ -25,15 +31,19 @@ function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCo
     addCartItem(newItem);
 };
 
-  const handleUpdateItem = (e) => {
+  const handleChangeInput = (e) => {
     const {value, id} = e.target;
-    console.log(value, id)
+    setInputValue({...inputValue, [`input${id.charAt(0).toUpperCase() + id.slice(1)}`]: value});
+  }
+
+  const handleUpdateItem = (e) => {
+    console.log(e.target.value)
   }
 
   const itemInfo = [
-    {title: 'Product Code: ', id: 'productCode', value: productCode, type: 'text', className: 'productCode'},
-    {title: 'Price per Unit ($): ', id: 'price', value: price, type: 'number'},
-    {title: 'In Stock: ', id: 'quantity', value: quantity, type: 'number'},
+    {title: 'Product Code: ', id: 'productCode', value: inputValue.inputProductCode, type: 'text', className: 'productCode'},
+    {title: 'Price per Unit ($): ', id: 'price', value: inputValue.inputPrice, type: 'number'},
+    {title: 'In Stock: ', id: 'quantity', value: inputValue.inputQuantity, type: 'number'},
   ]
 
 const {label} = useAuth((state) => state)
@@ -47,7 +57,16 @@ const {label} = useAuth((state) => state)
                 {itemInfo.map((item) => {
                   return (
                     <Container className='cardInfoCont' key={item.id}><p className='cardInfo'>{item.title} </p>{label === 'admin' ? (
-                      <CustomInput id={item.id} value={item.value} className={`adminItemInput ${item.className}`} onChange={handleUpdateItem} type={item.type}/>
+                      <>
+                      <CustomInput id={item.id} value={item.value} className={`adminItemInput ${item.className}`} onChange={handleChangeInput} type={item.type}
+                      />
+                      <Container className='adminButtonCont'>
+                        <CustomButton text='Update' className={`adminItemButton ${item.button}`}/>
+                        <CustomButton text='Cancel' className={`adminItemButton cancel ${item.button}`}/>
+                      </Container>
+                      
+                      </>
+                      
                     ): (<p className='cardInfoBold'>{item.value}</p>)}</Container>
                   )
                 })}
