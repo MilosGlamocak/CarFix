@@ -80,7 +80,7 @@
     font-size: 0.9rem !important;
     border-radius: 5px !important;
     border: none !important;
-    margin: 0 !important;
+    margin: 1rem !important;
 }
 
 .adminItemButton {
@@ -98,4 +98,9 @@
     padding: 0.5rem 0 0 0 !important;
     margin: 0 !important;
     gap: 1rem;
+}
+
+.disabled {
+    opacity: 0.5 !important;
+    cursor: not-allowed;
 }

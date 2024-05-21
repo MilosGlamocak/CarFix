@@ -17,6 +17,8 @@ function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCo
     inputQuantity: quantity
   })
 
+  const [disabled, setDisabled] = useState(true)
+
   const [loading, setLoading] = useState(false)
 
   const handleDeleteItem = () => {
@@ -34,6 +36,11 @@ function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCo
   const handleChangeInput = (e) => {
     const {value, id} = e.target;
     setInputValue({...inputValue, [`input${id.charAt(0).toUpperCase() + id.slice(1)}`]: value});
+    if (inputValue.inputPrice !== price || inputValue.inputProductCode !== productCode || inputValue.inputQuantity !== quantity) {
+      setDisabled(false)
+    } else {
+      setDisabled(true)
+    }
   }
 
   const handleUpdateItem = (e) => {
@@ -49,8 +56,11 @@ function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCo
       inputProductCode: productCode,
       inputPrice: price,
       inputQuantity: quantity
-    })
+    });
+    setDisabled(true)
   }
+
+ 
 
   const itemInfo = [
     {title: 'Product Code: ', id: 'productCode', value: inputValue.inputProductCode, type: 'text', className: 'productCode'},
@@ -79,8 +89,8 @@ const {label} = useAuth((state) => state)
                 <Container className='cardInfoCont'><p className='cardInfo'>Added by: </p><p className='cardInfoBold'>{publisher}</p></Container>
                 {label === 'admin' && (
                   <Container className='adminButtonCont'>
-                    <CustomButton text='Update' className={`adminItemButton `} onClick={handleUpdateItem}/>
-                    <CustomButton text='Cancel' className={`adminItemButton cancel `} onClick={handleCancelUpdate}/>
+                    <CustomButton text='Update' className={`adminItemButton ${disabled && 'disabled'}`} onClick={handleUpdateItem}/>
+                    <CustomButton text='Cancel' className={`adminItemButton cancel ${disabled && 'disabled'}`} onClick={handleCancelUpdate}/>
                   </Container>  
                 )}
                 
