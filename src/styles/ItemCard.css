@@ -47,7 +47,7 @@
     padding: 0 !important;
     gap: 0.5rem;
     font-size: 0.9rem;
-    margin: -0.8rem;
+    margin: -0.9rem;
 }
 
 .cardContRight {
@@ -68,7 +68,7 @@
 }
 
 .cardName {
-    margin: 1.5rem 0 0.5rem 0;
+    margin: 1.2rem 0 0.2rem 0;
 }
 
 .adminItemInput {
@@ -90,10 +90,9 @@
 .adminButtonCont {
     display: flex !important;
     align-items: center;
-    justify-content: center;
-    max-width: 30% !important;
+    justify-content: baseline;
     height: 1rem !important;
-    padding: 0 !important;
-    margin: auto 4rem auto auto !important;
+    padding: 0.5rem 0 0 0 !important;
+    margin: 0 !important;
     gap: 1rem;
 }

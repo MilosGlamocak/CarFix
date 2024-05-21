@@ -37,7 +37,7 @@ function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCo
   }
 
   const handleUpdateItem = (e) => {
-    console.log(e.target.value)
+    console.log(inputValue, itemId)
   }
 
   const itemInfo = [
@@ -59,18 +59,16 @@ const {label} = useAuth((state) => state)
                     <Container className='cardInfoCont' key={item.id}><p className='cardInfo'>{item.title} </p>{label === 'admin' ? (
                       <>
                       <CustomInput id={item.id} value={item.value} className={`adminItemInput ${item.className}`} onChange={handleChangeInput} type={item.type}
-                      />
-                      <Container className='adminButtonCont'>
-                        <CustomButton text='Update' className={`adminItemButton ${item.button}`}/>
-                        <CustomButton text='Cancel' className={`adminItemButton cancel ${item.button}`}/>
-                      </Container>
-                      
-                      </>
-                      
+                      />         
+                      </>   
                     ): (<p className='cardInfoBold'>{item.value}</p>)}</Container>
                   )
                 })}
-                <Container className='cardInfoCont'><p className='cardInfo'>Added by: </p><p className='cardInfoBold'>{publisher}</p></Container>  
+                <Container className='cardInfoCont'><p className='cardInfo'>Added by: </p><p className='cardInfoBold'>{publisher}</p></Container>
+                <Container className='adminButtonCont'>
+                        <CustomButton text='Update' className={`adminItemButton `} onClick={handleUpdateItem}/>
+                        <CustomButton text='Cancel' className={`adminItemButton cancel `}/>
+                </Container>  
             </Container>
         </Container> 
         <Container className='cardContRight'>
