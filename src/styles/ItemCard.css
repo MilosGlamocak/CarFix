@@ -47,7 +47,7 @@
     padding: 0 !important;
     gap: 0.5rem;
     font-size: 0.9rem;
-    margin: -0.8rem;
+    margin: -0.9rem;
 }
 
 .cardContRight {
@@ -65,8 +65,42 @@
 
 .cardInfoBold {
     font-weight: 500;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .cardName {
-    margin: 1.5rem 0 0.5rem 0;
+    margin: 1.2rem 0 0.2rem 0;
+}
+
+.adminItemInput {
+    width: auto !important;
+    max-width: 5rem !important;
+    height: 1rem !important;
+    font-size: 0.9rem !important;
+    border-radius: 5px !important;
+    border: none !important;
+    margin: 1rem !important;
+}
+
+.adminItemButton {
+    width: 3rem !important;
+    height: 1.3rem !important;
+    font-size: 0.75rem !important;
+    border: none !important;
+}
+
+.adminButtonCont {
+    display: flex !important;
+    align-items: center;
+    justify-content: baseline;
+    height: 1rem !important;
+    padding: 0.5rem 0 0 0 !important;
+    margin: 0 !important;
+    gap: 1rem;
+}
+
+.disabled {
+    opacity: 0.5 !important;
+    cursor: not-allowed;
 }

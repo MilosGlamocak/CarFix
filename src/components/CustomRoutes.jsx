@@ -1,4 +1,4 @@
-import {Routes, Route, BrowserRouter} from 'react-router-dom';
+import {Routes, Route, BrowserRouter, HashRouter} from 'react-router-dom';
 import { checkForUser, createUser, signIn, signOut } from '../../lib/appwrite'
 import { useAuth } from '../store'
 import Shop from '../pages/Shop'

@@ -2,13 +2,22 @@ import React, { useState } from 'react'
 import '../styles/ItemCard.css'
 import { CircularProgress, Container } from '@mui/material'
 import CustomButton from './CustomButton'
+import CustomInput from './CustomInput'
 import { useAuth, useItems } from '../store'
-import { deleteItem, getAllItems, getAllCarItems, deleteCarItem } from '../../lib/appwrite'
+import { deleteItem, getAllItems, getAllCarItems, deleteCarItem, updateCarItem } from '../../lib/appwrite'
 import LoadingAnimation from './LoadingAnimation'
 
 function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCode}) {
 
   const { cartItems, addCartItem, clearCartItems } = useItems();
+
+  let [inputValue, setInputValue] = useState({
+    inputProductCode: productCode,
+    inputPrice: price,
+    inputQuantity: quantity
+  })
+
+  const [disabled, setDisabled] = useState(true)
 
   const [loading, setLoading] = useState(false)
 
@@ -24,6 +33,41 @@ function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCo
     addCartItem(newItem);
 };
 
+  const handleChangeInput = (e) => {
+    const {value, id} = e.target;
+    setInputValue({...inputValue, [`input${id.charAt(0).toUpperCase() + id.slice(1)}`]: value});
+    if (inputValue.inputPrice !== price || inputValue.inputProductCode !== productCode || inputValue.inputQuantity !== quantity) {
+      setDisabled(false)
+    } else {
+      setDisabled(true)
+    }
+  }
+
+  const handleUpdateItem = (e) => {
+    console.log(inputValue, itemId);
+    /*updateCarItem(
+      itemId,
+      
+    )*/
+  }
+
+  const handleCancelUpdate = () => {
+    setInputValue({
+      inputProductCode: productCode,
+      inputPrice: price,
+      inputQuantity: quantity
+    });
+    setDisabled(true)
+  }
+
+ 
+
+  const itemInfo = [
+    {title: 'Product Code: ', id: 'productCode', value: inputValue.inputProductCode, type: 'text', className: 'productCode'},
+    {title: 'Price per Unit ($): ', id: 'price', value: inputValue.inputPrice, type: 'number'},
+    {title: 'In Stock: ', id: 'quantity', value: inputValue.inputQuantity, type: 'number'},
+  ]
+
 const {label} = useAuth((state) => state)
 
   return (
@@ -32,10 +76,24 @@ const {label} = useAuth((state) => state)
             <img src={imageUrl} className='itemImg'/>
             <Container className='cardTextLeft'>
                 <h2 className='cardName'>{name}</h2>
-                <Container className='cardInfoCont'><p className='cardInfo'>Product Code:</p><p className='cardInfoBold'>{productCode}</p></Container>
-                <Container className='cardInfoCont'><p className='cardInfo'>Price per Unit:</p><p className='cardInfoBold'>${price}</p></Container>
-                <Container className='cardInfoCont'><p className='cardInfo'>In Stock: </p><p className='cardInfoBold'>{quantity}</p></Container>
-                <Container className='cardInfoCont'><p className='cardInfo'>Added by: </p><p className='cardInfoBold'>{publisher}</p></Container>  
+                {itemInfo.map((item) => {
+                  return (
+                    <Container className='cardInfoCont' key={item.id}><p className='cardInfo'>{item.title} </p>{label === 'admin' ? (
+                      <>
+                      <CustomInput id={item.id} value={item.value} className={`adminItemInput ${item.className}`} onChange={handleChangeInput} type={item.type}
+                      />         
+                      </>   
+                    ): (<p className='cardInfoBold'>{item.value}</p>)}</Container>
+                  )
+                })}
+                <Container className='cardInfoCont'><p className='cardInfo'>Added by: </p><p className='cardInfoBold'>{publisher}</p></Container>
+                {label === 'admin' && (
+                  <Container className='adminButtonCont'>
+                    <CustomButton text='Update' className={`adminItemButton ${disabled && 'disabled'}`} onClick={handleUpdateItem}/>
+                    <CustomButton text='Cancel' className={`adminItemButton cancel ${disabled && 'disabled'}`} onClick={handleCancelUpdate}/>
+                  </Container>  
+                )}
+                
             </Container>
         </Container> 
         <Container className='cardContRight'>
