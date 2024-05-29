@@ -1,4 +1,4 @@
-import {Routes, Route, BrowserRouter} from 'react-router-dom';
+import {Routes, Route, BrowserRouter, HashRouter} from 'react-router-dom';
 import { checkForUser, createUser, signIn, signOut } from '../../lib/appwrite'
 import { useAuth } from '../store'
 import Shop from '../pages/Shop'
@@ -37,8 +37,6 @@ function CustomRoutes() {
           </>  /*checks if user is logged in, if not, only signup and signin is available */ 
           ) : (
           <Route path='/' element={<RouteContainer/>}>
-            <Route path={!username ? '/' : 'signin'} index element={<SignIn/>} />
-            <Route path='signup' element={<SignUp/>} />
             <Route path='/' index element={<Shop />}/>
             <Route path='profile' element={<Profile/>}/>
             <Route path='itemCreation' element={<ItemCreation/>}/>
