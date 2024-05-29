@@ -18,6 +18,7 @@ function RouteContainer() {
   }*/
   return (
     <>
+    {username ? (
       <Container className='routeCont'>
           <Container className='logoCont'>
             <h1 className='logo'>CarFix</h1>
@@ -36,6 +37,8 @@ function RouteContainer() {
         
         <Outlet />
       </Container>
+    ) : <></>}
+      
       
     </>
     

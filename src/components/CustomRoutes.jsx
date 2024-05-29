@@ -30,19 +30,15 @@ function CustomRoutes() {
       <BrowserRouter basename="CarFix" >
       <Routes>
 
-          {!username ? (
-          <>
-          <Route path='/' index element={<SignIn/>} />
-          <Route path='signup' element={<SignUp/>} />
-          </>  /*checks if user is logged in, if not, only signup and signin is available */ 
-          ) : (
+          
           <Route path='/' element={<RouteContainer/>}>
+            <Route path={!username ? '/' : 'signin'} index element={<SignIn/>} />
+            <Route path='signup' element={<SignUp/>} />
             <Route path='/' index element={<Shop />}/>
             <Route path='profile' element={<Profile/>}/>
             <Route path='itemCreation' element={<ItemCreation/>}/>
             <Route path='cart' element={<Cart/>}/>
           </Route>
-          )}
       </Routes>
       
       </BrowserRouter>
