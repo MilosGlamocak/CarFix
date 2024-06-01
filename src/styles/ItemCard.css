@@ -105,3 +105,12 @@
     opacity: 0.5 !important;
     cursor: auto;
 }
+
+.unitsContainer {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    max-width: 30% !important;
+    gap: 1rem;
+}

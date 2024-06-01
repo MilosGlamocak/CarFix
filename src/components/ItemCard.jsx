@@ -16,8 +16,22 @@ function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCo
   let [inputValue, setInputValue] = useState({
     inputProductCode: productCode,
     inputPrice: price,
-    inputQuantity: quantity
+    inputQuantity: quantity,
   })
+
+  let [units, setUnits] = useState(1);
+
+  const handleChangeUnits = (e) => {
+    const {value} = e.target;
+    
+    if (value > inputValue.inputQuantity) {
+      setUnits(inputValue.inputQuantity)
+    } else if (value > 1) {
+      setUnits(value)
+    } else {
+      setUnits(1)
+    }
+  }
 
   const [disabled, setDisabled] = useState(true)
 
@@ -42,9 +56,9 @@ function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCo
   }
 
   const handleAddCartItem = () => {
-    const newItem = { name, price, imageUrl, itemId, publisher, productCode};
+    const newItem = { name, price, imageUrl, itemId, publisher, productCode, units};
     addCartItem(newItem);
-    toastSuccess('Added to cart!')  
+    toastSuccess('Added to cart!'); 
 };
 
   const handleChangeInput = (e) => {
@@ -115,7 +129,9 @@ const {label} = useAuth((state) => state)
               <CustomButton text={loading ? <CircularProgress style={{color: 'white', scale: '0.5'}} /> : 'Delete item'} border='1px solid #520909' onClick={handleDeleteItem} />
               </>      
             )}
-            <p>Units: 1</p>
+            <Container className='unitsContainer'>
+            <p>Units:</p> <CustomInput width={'3rem'} type={'number'} value={units} onChange={handleChangeUnits} id={'units'}/>
+            </Container>
             <CustomButton text='Add to Cart' border='1px solid #365F22' onClick={handleAddCartItem}/>
         </Container>
     </Container>
