@@ -5,7 +5,9 @@ import CustomButton from './CustomButton'
 import CustomInput from './CustomInput'
 import { useAuth, useItems } from '../store'
 import { deleteItem, getAllItems, getAllCarItems, deleteCarItem, updateCarItem } from '../../lib/appwrite'
-import LoadingAnimation from './LoadingAnimation'
+import LoadingAnimation from './LoadingAnimation';
+import { toast } from 'react-toastify'
+import { toastSuccess } from './Toast'
 
 function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCode}) {
 
@@ -38,9 +40,10 @@ function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCo
     })
   }
 
-  const handleAddItem = () => {
+  const handleAddCartItem = () => {
     const newItem = { name, price, imageUrl, itemId, publisher, productCode};
     addCartItem(newItem);
+    toastSuccess('Added to cart!')  
 };
 
   const handleChangeInput = (e) => {
@@ -52,7 +55,8 @@ function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCo
   const handleUpdateItem = (e) => {
     updateCarItem(itemId, inputValue.inputProductCode, inputValue.inputPrice, parseFloat(inputValue.inputQuantity))
     .then(() => {
-      setDisabled(true)
+      setDisabled(true);
+      toastSuccess('Item updated!')
   }).finally(() => {
     getAllCarItems()
   })
@@ -111,7 +115,7 @@ const {label} = useAuth((state) => state)
               </>      
             )}
             <p>Units: 1</p>
-            <CustomButton text='Add to Cart' border='1px solid #365F22' onClick={handleAddItem}/>
+            <CustomButton text='Add to Cart' border='1px solid #365F22' onClick={handleAddCartItem}/>
         </Container>
     </Container>
   )
