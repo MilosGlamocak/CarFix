@@ -44,11 +44,8 @@ function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCo
   }
 
   const handleUpdateItem = (e) => {
-    console.log(inputValue, itemId);
-    /*updateCarItem(
-      itemId,
-      
-    )*/
+    updateCarItem(itemId, inputValue.inputProductCode, inputValue.inputPrice, parseFloat(inputValue.inputQuantity))
+    .then(() => setDisabled(true))
   }
 
   const handleCancelUpdate = () => {
