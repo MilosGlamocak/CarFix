@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../styles/ItemCard.css'
 import { CircularProgress, Container } from '@mui/material'
 import CustomButton from './CustomButton'
@@ -21,6 +21,14 @@ function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCo
 
   const [loading, setLoading] = useState(false)
 
+  useEffect(() => {
+    if (inputValue.inputPrice !== price || inputValue.inputProductCode !== productCode || inputValue.inputQuantity !== quantity) {
+      setDisabled(false)
+    } else {
+      setDisabled(true)
+    }
+  }, [inputValue])
+
   const handleDeleteItem = () => {
     setLoading(true)
     deleteCarItem(itemId).then(() => {
@@ -36,11 +44,7 @@ function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCo
   const handleChangeInput = (e) => {
     const {value, id} = e.target;
     setInputValue({...inputValue, [`input${id.charAt(0).toUpperCase() + id.slice(1)}`]: value});
-    if (inputValue.inputPrice !== price || inputValue.inputProductCode !== productCode || inputValue.inputQuantity !== quantity) {
-      setDisabled(false)
-    } else {
-      setDisabled(true)
-    }
+    
   }
 
   const handleUpdateItem = (e) => {
