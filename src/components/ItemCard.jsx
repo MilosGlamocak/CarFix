@@ -7,7 +7,7 @@ import { useAuth, useItems } from '../store'
 import { deleteItem, getAllItems, getAllCarItems, deleteCarItem, updateCarItem } from '../../lib/appwrite'
 import LoadingAnimation from './LoadingAnimation';
 import { toast } from 'react-toastify'
-import { toastSuccess } from './Toast'
+import { toastSuccess, toastWarning } from './Toast'
 
 function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCode}) {
 
@@ -34,7 +34,8 @@ function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCo
   const handleDeleteItem = () => {
     setLoading(true)
     deleteCarItem(itemId).then(() => {
-      getAllCarItems().then(() => setLoading(false))
+      toastSuccess('Deleted an item!')
+      getAllCarItems().then(() => setLoading(false));
     }).finally(() => {
       getAllCarItems()
     })

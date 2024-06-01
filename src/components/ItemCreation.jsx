@@ -49,6 +49,7 @@ function ItemCreation() {
           ).then(() => {
               setItemCred({
               name: '',
+              productCode: '',
               imageUrl: '',
               price: '',
               chamber: '',
@@ -73,7 +74,7 @@ function ItemCreation() {
         {type: 'number', id: 'quantity', placeholder: 'Quantity', value: itemCred.quantity},
       ]
 
-      const categories = ['Filters', 'Belts', 'Oil', 'Brakes', 'Livery', 'Electronics', 'Wheels', 'Suspension'];
+      const categories = ['Filters', 'Belts', 'Oil', 'Brakes', 'Livery', 'Electronics', 'Wheels', 'Suspension', 'Miscellaneous'];
 
 
   return (

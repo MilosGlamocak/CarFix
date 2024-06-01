@@ -71,6 +71,7 @@
 
 .cardName {
     margin: 1.2rem 0 0.2rem 0;
+    text-wrap: nowrap;
 }
 
 .adminItemInput {
