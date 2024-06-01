@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import '../styles/CustomInput.css'
 
-function CustomInput({placeholder, id, onChange, width, color, backgroundColor, border, type, className, value}) {
+function CustomInput({placeholder, id, onChange, width, color, backgroundColor, border, type, className, value, step}) {
   return (
     <input className={`customInput ${className}`}
         placeholder={placeholder} id={id} onChange={onChange} type={type}
@@ -10,6 +10,7 @@ function CustomInput({placeholder, id, onChange, width, color, backgroundColor, 
             width: width, color: color, backgroundColor: backgroundColor, border: border
         }}
         value={value}
+        step={step}
     />
   )
 }
@@ -24,6 +25,7 @@ CustomInput.propTypes = {
     border: PropTypes.string,
     type: PropTypes.string,
     className: PropTypes.string,
+    step: PropTypes.string,
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
