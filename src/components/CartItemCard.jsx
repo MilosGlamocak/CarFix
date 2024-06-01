@@ -13,7 +13,7 @@ function CartItemCard({name, price, quantity, imageUrl, itemId, publisher}) {
 
   const handleDeleteItem = () => {
     console.log(itemId)
-     deleteCartItem(itemId)
+    deleteCartItem(itemId);
   }
 
 

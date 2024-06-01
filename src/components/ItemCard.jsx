@@ -58,7 +58,7 @@ function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCo
     .then(() => {
       setDisabled(true);
       toastSuccess('Item updated!')
-  }).finally(() => {
+  }).catch((error) => toastWarning(`Error: ${error}`)).finally(() => {
     getAllCarItems()
   })
   }
