@@ -33,6 +33,8 @@ function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCo
     setLoading(true)
     deleteCarItem(itemId).then(() => {
       getAllCarItems().then(() => setLoading(false))
+    }).finally(() => {
+      getAllCarItems()
     })
   }
 
@@ -51,6 +53,8 @@ function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCo
     updateCarItem(itemId, inputValue.inputProductCode, inputValue.inputPrice, parseFloat(inputValue.inputQuantity))
     .then(() => {
       setDisabled(true)
+  }).finally(() => {
+    getAllCarItems()
   })
   }
 

@@ -6,15 +6,9 @@ import CartItemCard from '../components/CartItemCard'
 import CustomButton from '../components/CustomButton'
 
 function Cart() {
-    
-    const handleAddItem = () => {
-
-    }
 
     const cartItems = useItems((state) => state.cartItems)
     let totalCost = 0;
-
-
 
   return (
     <Container className='cartCont'>
