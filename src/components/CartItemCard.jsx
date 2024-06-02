@@ -27,7 +27,7 @@ const units = 1
             <Container className='cardTextLeft'>
                 <h2 className='cardName'>{name}</h2>
                 <Container className='cardInfoCont'><p className='cardInfo'>Price per Unit:</p><p className='cardInfoBold'>${price}</p></Container>
-                <Container className='cardInfoCont'><p className='cardInfo'>Total Price:</p><p className='cardInfoBold'>${price * quantity}</p></Container> 
+                <Container className='cardInfoCont'><p className='cardInfo'>Total Price:</p><p className='cardInfoBold'>${(Math.round(price * quantity * 100) / 100).toFixed(2)}</p></Container> 
             </Container>
         </Container> 
         <Container className='cardContRight'>

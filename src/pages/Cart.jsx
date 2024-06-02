@@ -21,7 +21,7 @@ function Cart() {
             totalCost += item.price*item.units
             return <CartItemCard imageUrl={item.imageUrl} name={item.name} price={item.price} key={item.itemId} itemId={item.itemId} quantity={item.units}/>
         }) : (<h3>No items in cart</h3>)}
-        <p>Total cost: ${Math.round(totalCost * 100)/100}</p>
+        <p>Total cost: ${(Math.round(totalCost * 100)/100).toFixed(2)}</p>
         <CustomButton text='Proceed to Checkout' border='1px solid #365F22' backgroundColor='#365F22' height='3rem' onClick={handleAddItem}/>
         </Container>
         
