@@ -39,12 +39,15 @@ function Shop() {
   
   return (
     <Container className='armoryCont'>
+      
       <Container className='categoriesCont'>
-        <CustomInput placeholder={'Search'} onChange={(e) => handleSearchItems(e.target.value)}/>
-        <h3 className='categoryBtn' onClick={handleGetAllItems}>All</h3>
+      <CustomInput placeholder={'Search'} onChange={(e) => handleSearchItems(e.target.value)} className='searchInput'/>
+      <Container className='categoriesLinksCont'>
+      <h3 className='categoryBtn' onClick={handleGetAllItems}>All</h3>
         {categories.map((cat) => {
           return (<h3 className='categoryBtn' key={cat} onClick={() => handleGetItemsCategory(cat)}>{cat}</h3>)
         })}
+      </Container>
       </Container>
       <Container className='itemsCont'>
         { !loading ? (items.length > 0 ? items.map((item) => {
