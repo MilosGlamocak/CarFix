@@ -8,6 +8,7 @@ import { deleteItem, getAllItems, getAllCarItems, deleteCarItem, updateCarItem }
 import LoadingAnimation from './LoadingAnimation';
 import { toast } from 'react-toastify'
 import { toastSuccess, toastWarning } from './Toast'
+import PropTypes from 'prop-types'
 
 function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCode}) {
 
@@ -144,6 +145,16 @@ const {label} = useAuth((state) => state)
         </Container>
     </Container>
   )
+}
+
+ItemCard.propTypes = {
+  name: PropTypes.string,
+  price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  quantity: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  imageUrl: PropTypes.string,
+  itemId: PropTypes.string,
+  publisher: PropTypes.string,
+  productCode: PropTypes.string
 }
 
 export default ItemCard

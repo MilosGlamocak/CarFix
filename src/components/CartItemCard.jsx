@@ -4,8 +4,9 @@ import { CircularProgress, Container } from '@mui/material'
 import CustomButton from './CustomButton'
 import { useAuth, useItems } from '../store'
 import LoadingAnimation from './LoadingAnimation'
+import PropTypes from 'prop-types'
 
-function CartItemCard({name, price, quantity, imageUrl, itemId, publisher}) {
+function CartItemCard({name, price, quantity, imageUrl, itemId, publisher, productCode}) {
 
   const { cartItems, addCartItem, clearCartItems, deleteCartItem } = useItems();
 
@@ -26,6 +27,7 @@ const units = 1
             <img src={imageUrl} className='itemImg'/>
             <Container className='cardTextLeft'>
                 <h2 className='cardName'>{name}</h2>
+                <Container className='cardInfoCont'><p className='cardInfo'>Product code:</p><p className='cardInfoBold'>{productCode}</p></Container>
                 <Container className='cardInfoCont'><p className='cardInfo'>Price per Unit:</p><p className='cardInfoBold'>${price}</p></Container>
                 <Container className='cardInfoCont'><p className='cardInfo'>Total Price:</p><p className='cardInfoBold'>${(Math.round(price * quantity * 100) / 100).toFixed(2)}</p></Container> 
             </Container>
@@ -38,6 +40,16 @@ const units = 1
         </Container>
     </Container>
   )
+}
+
+CartItemCard.propTypes = {
+  name: PropTypes.string,
+  price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  quantity: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  imageUrl: PropTypes.string,
+  itemId: PropTypes.string,
+  publisher: PropTypes.string,
+  productCode: PropTypes.string
 }
 
 export default CartItemCard
