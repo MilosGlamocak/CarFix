@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import '../styles/Shop.css'
 import {Container} from '@mui/material'
 import {useAuth, useItems} from '../store'
-import { getAllItems, createNewItem, getAllCarItems, getCarItemsCategory } from '../../lib/appwrite'
+import { getAllItems, createNewItem, getAllCarItems, getCarItemsCategory, getCarItemsSearch } from '../../lib/appwrite'
 import ItemCard from '../components/ItemCard'
 import LoadingAnimation from '../components/LoadingAnimation'
+import CustomInput from '../components/CustomInput'
 
 function Shop() {
 
@@ -28,6 +29,10 @@ function Shop() {
     getCarItemsCategory(cat).finally(() => setLoading(false))
   }
 
+  const handleSearchItems = (string) => {
+    getCarItemsSearch(string)
+  }
+
   const {label} = useAuth((state) => state)
 
   const categories = ['Filters', 'Belts', 'Oil', 'Brakes', 'Livery', 'Electronics', 'Wheels', 'Suspension', 'Miscellaneous'];
@@ -35,6 +40,7 @@ function Shop() {
   return (
     <Container className='armoryCont'>
       <Container className='categoriesCont'>
+        <CustomInput placeholder={'Search'} onChange={(e) => handleSearchItems(e.target.value)}/>
         <h3 className='categoryBtn' onClick={handleGetAllItems}>All</h3>
         {categories.map((cat) => {
           return (<h3 className='categoryBtn' key={cat} onClick={() => handleGetItemsCategory(cat)}>{cat}</h3>)
