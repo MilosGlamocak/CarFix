@@ -16,3 +16,18 @@
     top: 20vh !important;
     background-color: black;
 }
+
+.categoriesCont {
+    max-width: 70vw !important;
+    height: 10rem;
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    padding: 5rem 0 0 0 !important;
+}
+
+.categoryBtn {
+    cursor: pointer;
+}
