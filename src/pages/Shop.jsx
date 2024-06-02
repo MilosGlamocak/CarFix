@@ -13,14 +13,19 @@ function Shop() {
   let items = useItems((state) => state.items)
   let [loading, setLoading] = useState(true)
 
+  const handleGetAllItems = () => {
+    setLoading(true)
+    getAllCarItems().finally(() => setLoading(false))
+  }
+
   useEffect(() => { 
     //getAllItems()
-    getAllCarItems().finally(() => setLoading(false))
+    handleGetAllItems()
   }, []) 
 
   const handleGetItemsCategory = (cat) => {
     setLoading(true)
-    getCarItemsCategory(cat).finally((setLoading(false)))
+    getCarItemsCategory(cat).finally(() => setLoading(false))
   }
 
   const {label} = useAuth((state) => state)
@@ -30,15 +35,15 @@ function Shop() {
   return (
     <Container className='armoryCont'>
       <Container className='categoriesCont'>
-        <h3 className='categoryBtn' onClick={() => getAllCarItems()}>All</h3>
+        <h3 className='categoryBtn' onClick={handleGetAllItems}>All</h3>
         {categories.map((cat) => {
           return (<h3 className='categoryBtn' key={cat} onClick={() => handleGetItemsCategory(cat)}>{cat}</h3>)
         })}
       </Container>
       <Container className='itemsCont'>
-        { items.length > 0 ? items.map((item) => {
-          return <ItemCard name={item.name} chamber={item.chamber} imageUrl={item.imageUrl} price={(item.price).toFixed(2)} quantity={item.quantity} key={item.name} itemId={item.$id} publisher={item.users.username} productCode={item.productCode}/>
-        })  : (loading ? <LoadingAnimation /> : <h2>No items match your search</h2>)}
+        { !loading ? (items.length > 0 ? items.map((item) => {
+            return (<ItemCard name={item.name} chamber={item.chamber} imageUrl={item.imageUrl} price={(item.price).toFixed(2)} quantity={item.quantity} key={item.name} itemId={item.$id} publisher={item.users.username} productCode={item.productCode}/>)
+        }) : <h3 >No items match your search</h3>)  : <LoadingAnimation classname='loadingAnimShopCont'/>}
         
       </Container>
       
