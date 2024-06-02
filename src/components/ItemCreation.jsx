@@ -11,6 +11,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { toastSuccess, toastWarning } from './Toast'
 
 
 
@@ -45,14 +46,20 @@ function ItemCreation() {
             userId,
             itemCred.category,
             itemCred.productCode
-          ).then(() => setItemCred({
-            name: '',
-          imageUrl: '',
-          price: '',
-          chamber: '',
-          quantity: '',
-          category: 'Filters'
-          })).catch((error) => console.error(error)).finally(() => setLoading(false))
+          ).then(() => {
+              setItemCred({
+              name: '',
+              productCode: '',
+              imageUrl: '',
+              price: '',
+              chamber: '',
+              quantity: '',
+              category: 'Filters'
+              });
+              toastSuccess('Added new item!')
+            }).catch((error) => {
+              toastWarning(`Error: ${error}`)
+            }).finally(() => setLoading(false))
         }
 
       const handleCategoryChange = (e) => {
@@ -67,7 +74,7 @@ function ItemCreation() {
         {type: 'number', id: 'quantity', placeholder: 'Quantity', value: itemCred.quantity},
       ]
 
-      const categories = ['Filters', 'Belts', 'Oil', 'Brakes', 'Livery', 'Electronics', 'Wheels', 'Suspension'];
+      const categories = ['Filters', 'Belts', 'Oil', 'Brakes', 'Livery', 'Electronics', 'Wheels', 'Suspension', 'Miscellaneous'];
 
 
   return (

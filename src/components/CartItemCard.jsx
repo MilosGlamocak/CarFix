@@ -12,8 +12,7 @@ function CartItemCard({name, price, quantity, imageUrl, itemId, publisher}) {
   const [loading, setLoading] = useState(false)
 
   const handleDeleteItem = () => {
-    console.log(itemId)
-     deleteCartItem(itemId)
+    deleteCartItem(itemId);
   }
 
 
@@ -28,11 +27,11 @@ const units = 1
             <Container className='cardTextLeft'>
                 <h2 className='cardName'>{name}</h2>
                 <Container className='cardInfoCont'><p className='cardInfo'>Price per Unit:</p><p className='cardInfoBold'>${price}</p></Container>
-                <Container className='cardInfoCont'><p className='cardInfo'>Total Price:</p><p className='cardInfoBold'>${price * units}</p></Container> 
+                <Container className='cardInfoCont'><p className='cardInfo'>Total Price:</p><p className='cardInfoBold'>${(Math.round(price * quantity * 100) / 100).toFixed(2)}</p></Container> 
             </Container>
         </Container> 
         <Container className='cardContRight'>
-              <p>Units: {units}</p>
+              <p>Units: {quantity}</p>
               <CustomButton text={loading ? <CircularProgress style={{color: 'white', scale: '0.5'}} /> : 'Remove'} border='1px solid #520909' onClick={handleDeleteItem}/>
             
             

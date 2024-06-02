@@ -5,7 +5,9 @@ import CustomButton from './CustomButton'
 import CustomInput from './CustomInput'
 import { useAuth, useItems } from '../store'
 import { deleteItem, getAllItems, getAllCarItems, deleteCarItem, updateCarItem } from '../../lib/appwrite'
-import LoadingAnimation from './LoadingAnimation'
+import LoadingAnimation from './LoadingAnimation';
+import { toast } from 'react-toastify'
+import { toastSuccess, toastWarning } from './Toast'
 
 function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCode}) {
 
@@ -14,8 +16,22 @@ function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCo
   let [inputValue, setInputValue] = useState({
     inputProductCode: productCode,
     inputPrice: price,
-    inputQuantity: quantity
+    inputQuantity: quantity,
   })
+
+  let [units, setUnits] = useState(1);
+
+  const handleChangeUnits = (e) => {
+    const {value} = e.target;
+    
+    if (value > inputValue.inputQuantity) {
+      setUnits(inputValue.inputQuantity)
+    } else if (value > 1) {
+      setUnits(value)
+    } else {
+      setUnits(1)
+    }
+  }
 
   const [disabled, setDisabled] = useState(true)
 
@@ -32,13 +48,25 @@ function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCo
   const handleDeleteItem = () => {
     setLoading(true)
     deleteCarItem(itemId).then(() => {
-      getAllCarItems().then(() => setLoading(false))
+      toastSuccess('Deleted an item!')
+      getAllCarItems().then(() => setLoading(false));
+    }).finally(() => {
+      getAllCarItems()
     })
   }
 
-  const handleAddItem = () => {
-    const newItem = { name, price, imageUrl, itemId, publisher, productCode};
-    addCartItem(newItem);
+  const handleAddCartItem = () => {
+
+    const newItem = { name, price, imageUrl, itemId, publisher, productCode, units};
+
+    const i = cartItems.findIndex(e => e.itemId === newItem.itemId);
+    if (i > -1) {
+      toastWarning('Already in cart!')
+    } else {
+      addCartItem(newItem);
+      toastSuccess('Added to cart')
+    }
+    
 };
 
   const handleChangeInput = (e) => {
@@ -50,7 +78,10 @@ function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCo
   const handleUpdateItem = (e) => {
     updateCarItem(itemId, inputValue.inputProductCode, inputValue.inputPrice, parseFloat(inputValue.inputQuantity))
     .then(() => {
-      setDisabled(true)
+      setDisabled(true);
+      toastSuccess('Item updated!')
+  }).catch((error) => toastWarning(`Error: ${error}`)).finally(() => {
+    getAllCarItems()
   })
   }
 
@@ -106,8 +137,10 @@ const {label} = useAuth((state) => state)
               <CustomButton text={loading ? <CircularProgress style={{color: 'white', scale: '0.5'}} /> : 'Delete item'} border='1px solid #520909' onClick={handleDeleteItem} />
               </>      
             )}
-            <p>Units: 1</p>
-            <CustomButton text='Add to Cart' border='1px solid #365F22' onClick={handleAddItem}/>
+            <Container className='unitsContainer'>
+            <p>Units:</p> <CustomInput width={'3rem'} type={'number'} value={units} onChange={handleChangeUnits} id={'units'}/>
+            </Container>
+            <CustomButton text='Add to Cart' border='1px solid #365F22' onClick={handleAddCartItem}/>
         </Container>
     </Container>
   )
