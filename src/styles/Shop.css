@@ -18,6 +18,7 @@
 }
 
 .categoriesCont {
+    background-color: black;
     max-width: 70vw !important;
     height: 10rem;
     display: flex !important;
@@ -25,7 +26,9 @@
     align-items: center;
     justify-content: center;
     gap: 3rem;
-    padding: 5rem 0 0 0 !important;
+    padding: 3rem 0 0 0 !important;
+    position: fixed;
+    z-index: 999;
 }
 
 .categoryBtn {
