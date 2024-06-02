@@ -12,7 +12,6 @@ function CartItemCard({name, price, quantity, imageUrl, itemId, publisher}) {
   const [loading, setLoading] = useState(false)
 
   const handleDeleteItem = () => {
-    console.log(itemId)
     deleteCartItem(itemId);
   }
 

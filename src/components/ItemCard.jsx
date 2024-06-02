@@ -56,9 +56,17 @@ function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCo
   }
 
   const handleAddCartItem = () => {
+
     const newItem = { name, price, imageUrl, itemId, publisher, productCode, units};
-    addCartItem(newItem);
-    toastSuccess('Added to cart!'); 
+
+    const i = cartItems.findIndex(e => e.itemId === newItem.itemId);
+    if (i > -1) {
+      toastWarning('Already in cart!')
+    } else {
+      addCartItem(newItem);
+      toastSuccess('Added to cart')
+    }
+    
 };
 
   const handleChangeInput = (e) => {
