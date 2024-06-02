@@ -16,3 +16,25 @@
     top: 20vh !important;
     background-color: black;
 }
+
+.categoriesCont {
+    background-color: black;
+    max-width: 70vw !important;
+    height: 10rem;
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    padding: 3rem 0 0 0 !important;
+    position: fixed;
+    z-index: 999;
+}
+
+.categoryBtn {
+    cursor: pointer;
+}
+
+.loadingAnimShopCont {
+    transform: translate(-50%, 0%) !important;
+}
