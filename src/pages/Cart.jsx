@@ -26,7 +26,7 @@ function Cart() {
         }) : (<h3>No items in cart</h3>)}
         <p>Total cost: ${(Math.round(totalCost * 100)/100).toFixed(2)}</p>
         <CustomButton text='Proceed to Checkout' border='1px solid #365F22' backgroundColor='#365F22' height='3rem' onClick={handleOpenClose}/>
-        <CheckoutModal open={open} handleClose={handleOpenClose}/>
+        <CheckoutModal open={open} handleClose={handleOpenClose} cartItems={cartItems}/>
         </Container>
         
     </Container>

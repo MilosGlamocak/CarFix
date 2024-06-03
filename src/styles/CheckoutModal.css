@@ -1,0 +1,87 @@
+.checkoutModalCont {
+    background-color: black;
+    border: 1px solid #343434;
+    color: white;
+    max-width: 70vw !important;
+    height: 70vh;
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    transform: translate(0, 25%);
+    padding: 0 !important;
+}
+
+#modal-modal-description {
+    color: rgba(255,255,255,0.5);
+}
+
+#modal-modal-title {
+    position: absolute;
+    top: 5%;
+}
+
+.closeBtnModal {
+    cursor: pointer;
+    position: absolute;
+    top: 5%;
+    right: 2.5%;
+}
+
+.checkoutFormCont {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.checkoutInputSingle {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalLeftCont {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: baseline;
+    max-width: 50% !important;
+    height: 85%;
+    transform: translate(0, 9%);
+    overflow-y: scroll;
+}
+
+.modalContRight {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 50% !important;
+    padding: 0 0 0 1rem !important;
+    gap: 3rem;
+}
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #545454 #000000;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 1px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #000000;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #545454;
+    border-radius: 20px;
+    border: 0px none #ffffff;
+  }
