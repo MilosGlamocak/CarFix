@@ -135,13 +135,13 @@ const {label} = useAuth((state) => state)
         <Container className='cardContRight'>
             {label === 'admin' && (
               <>
-              <CustomButton text={loading ? <CircularProgress style={{color: 'white', scale: '0.5'}} /> : 'Delete item'} border='1px solid #520909' onClick={handleDeleteItem} />
+              <CustomButton text={loading ? <CircularProgress style={{color: 'white', scale: '0.5'}} /> : 'Delete item'} border='1px solid #520909' onClick={handleDeleteItem} className='buttonRight'/>
               </>      
             )}
             <Container className='unitsContainer'>
-            <p>Units:</p> <CustomInput width={'3rem'} type={'number'} value={units} onChange={handleChangeUnits} id={'units'}/>
+            <p>Units:</p> <CustomInput width={'3rem'} type={'number'} value={units} onChange={handleChangeUnits} id={'units'} className='unitsInput'/>
             </Container>
-            <CustomButton text='Add to Cart' border='1px solid #365F22' onClick={handleAddCartItem}/>
+            <CustomButton text='Add to Cart' border='1px solid #365F22' onClick={handleAddCartItem} className='buttonRight'/>
         </Container>
     </Container>
   )
