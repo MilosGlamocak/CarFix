@@ -58,7 +58,7 @@ function ItemCard({name, price, quantity, imageUrl, itemId, publisher, productCo
 
   const handleAddCartItem = () => {
 
-    const newItem = { name, price, imageUrl, itemId, publisher, productCode, units};
+    const newItem = { name, price, imageUrl, itemId, publisher, productCode, units, quantity};
 
     const i = cartItems.findIndex(e => e.itemId === newItem.itemId);
     if (i > -1) {
@@ -139,9 +139,9 @@ const {label} = useAuth((state) => state)
               </>      
             )}
             <Container className='unitsContainer'>
-            <p>Units:</p> <CustomInput width={'3rem'} type={'number'} value={units} onChange={handleChangeUnits} id={'units'} className='unitsInput'/>
+            <p>Units:</p> <CustomInput width={'3rem'} type={'number'} value={units} onChange={handleChangeUnits} id={'units'} className='unitsInput' disabled={quantity <= 0}/>
             </Container>
-            <CustomButton text='Add to Cart' border='1px solid #365F22' onClick={handleAddCartItem} className='buttonRight'/>
+            <CustomButton text='Add to Cart' border='1px solid #365F22' onClick={handleAddCartItem} className={`buttonRight ${quantity <= 0 && 'disabled'}`} disabled={quantity <= 0}/>
         </Container>
     </Container>
   )

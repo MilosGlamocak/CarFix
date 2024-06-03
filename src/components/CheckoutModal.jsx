@@ -9,14 +9,29 @@ import CustomInput from './CustomInput'
 import CustomButton from './CustomButton'
 import CartItemCard from './CartItemCard';
 import CheckoutItemCard from './CheckoutItemCard'
+import { updateCarItem } from '../../lib/appwrite';
+import { toastSuccess, toastWarning } from './Toast';
+import { useItems } from '../store';
 
 function CheckoutModal({open, handleClose, cartItems, totalCost}) {
+
+    const clearCartItems = useItems((state) => state.clearCartItems)
 
     const checkoutForm = [
         {id: 'fullName', placeholder: 'Full Name'},
         {id: 'city', placeholder: 'City'},
         {id: 'address', placeholder: 'House Address'}
     ]
+
+    const handlePlaceOrder = () => {
+        Promise.all(cartItems.map((item) => {
+            updateCarItem(item.itemId, item.productCode, item.price, item.quantity - item.units).catch((err) => toastWarning(err))
+        })).then(() => {
+            clearCartItems()
+            toastWarning('Updated items, didnt send order')
+            handleClose()
+        })
+    }
 
     return (
           <Modal
@@ -31,7 +46,7 @@ function CheckoutModal({open, handleClose, cartItems, totalCost}) {
                 </Typography>
                 <Container className='modalLeftCont'>
                     {cartItems && cartItems.map((item) => {
-                        return (<CheckoutItemCard imageUrl={item.imageUrl} key={item.id} name={item.name} price={item.price} quantity={item.units} productCode={item.productCode}/>)
+                        return (<CheckoutItemCard imageUrl={item.imageUrl} key={item.itemId} name={item.name} price={item.price} quantity={item.units} productCode={item.productCode}/>)
                     })}
                     {/**this uses cart.css */}
                     <Container className='totalCostCont'>
@@ -51,7 +66,7 @@ function CheckoutModal({open, handleClose, cartItems, totalCost}) {
                             </Container>)
                         })}
                     </Container>
-                    <CustomButton text='Place order'/>
+                    <CustomButton text='Place order' onClick={handlePlaceOrder}/>
                 </Container>
                 
                 
