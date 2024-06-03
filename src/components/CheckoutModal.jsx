@@ -18,9 +18,10 @@ function CheckoutModal({open, handleClose, cartItems, totalCost}) {
     const clearCartItems = useItems((state) => state.clearCartItems)
 
     const checkoutForm = [
-        {id: 'fullName', placeholder: 'Full Name'},
-        {id: 'city', placeholder: 'City'},
-        {id: 'address', placeholder: 'House Address'}
+        {id: 'fullName', placeholder: 'Full Name', type: 'text'},
+        {id: 'phone', placeholder: 'Phone Number', type: 'tel'},
+        {id: 'city', placeholder: 'City', type: 'text'},
+        {id: 'address', placeholder: 'House Address', type: 'text'}
     ]
 
     const handlePlaceOrder = () => {
@@ -62,7 +63,7 @@ function CheckoutModal({open, handleClose, cartItems, totalCost}) {
                             return (
                             <Container className='checkoutInputSingle' key={field.id}>
                                 <label>{field.placeholder}</label>
-                                <CustomInput/>
+                                <CustomInput type={field.type}/>
                             </Container>)
                         })}
                     </Container>

@@ -12,6 +12,7 @@ function CustomInput({placeholder, id, onChange, width, color, backgroundColor, 
         value={value}
         step={step}
         disabled={disabled}
+        
     />
   )
 }
