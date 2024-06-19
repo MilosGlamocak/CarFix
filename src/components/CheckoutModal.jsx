@@ -68,9 +68,7 @@ function CheckoutModal({open, handleClose, cartItems, totalCost}) {
                         })}
                     </Container>
                     <CustomButton text='Place order' onClick={handlePlaceOrder}/>
-                </Container>
-                
-                
+                </Container>       
                 <CloseIcon className='closeBtnModal' onClick={handleClose}/>
             </Container>
           </Modal>
